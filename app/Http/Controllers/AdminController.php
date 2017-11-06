@@ -18,6 +18,7 @@ class AdminController extends Controller
     public function index()
     {
       $users=User::get()->data;
+      
       return view("admin.index",compact("users"));
     }
 
