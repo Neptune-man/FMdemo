@@ -2,26 +2,103 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-use Larafm;
+use Auth;
+use App\User;
 
 class AuthController extends Controller
 {
-  function Login(){
-    return view("auth.login");
-  }
-    function postLogin(request $request){
-      $result=Larafm::Auth()->login($request->input());
-      if ($result->errorCode==0) {
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function login()
+    {
+        return view("Auth.login");
+    }
+
+    public function postLogin(LoginRequest $request){
+      $inputs=$request->input();
+      $result=Auth::login($inputs);
+      if ($result) {
         return redirect("home");
       }else {
-        $errors = array('Error' => $result->message );
-        return back()->withInput()->withErrors($errors);
+        $errors=["error"=>"Wrong"];
+        return back()->withInput()->withError($errors);
       }
     }
 
-    function Logout(){
-      Larafm::Auth()->logout();
-      return redirect("login");
+    public function logout()
+    {
+        Auth::logout();
+        return redirect("/");
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

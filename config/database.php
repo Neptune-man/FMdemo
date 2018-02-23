@@ -78,18 +78,21 @@ return [
             'prefix' => '',
         ],
 
+
         'filemaker' => [
             'auth'     => [
-                'account'   =>  'アカウント',   //認証で使用するアカウントのフィールド名
+                'account'   =>  '社員番号',   //認証で使用するアカウントのフィールド名
                 'password'  =>  'パスワード',   //認証で使用するパスワードのフィールド名
-                'layout'    =>  'ユーザー'      //認証で使用してるデータがあるレイアウト名
+                'layout'    =>  'ユーザー'  ,   //認証で使用してるデータがあるレイアウト名
+                'delete'    =>  "削除",   //削除フラグが設定されている場合は削除フラグのフィールド名
             ],
             'hostname' => env('FM_HOST',    'localhost'),
+            'host' =>     env('FM_HOST',    'localhost'),
             'port'     => env('FM_PORT',    '80'),
             'type'     => env('FM_TYPE',    'FMPro7'),
             'scheme'   => env('FM_SCHEME',  'http'),
-            'dbname'   => env('FM_DATABASE',  'dbname'),
-            'max'      => env('FM_MAX',  '1000'),
+            'dbname'   => '勤怠システム',
+            'max'      => env('FM_MAX',     '1000'),
             'username' => env('FM_USERNAME','ID'),
             'password' => env('FM_PASSWORD','Pass'),
         ],

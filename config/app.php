@@ -176,8 +176,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        Ngt\Larafm\LarafmServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Ngt\Larafm\Database\FileMakerServiceProvider::class,
 
     ],
 
@@ -196,7 +195,7 @@ return [
 
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
-        'Auth' => Illuminate\Support\Facades\Auth::class,
+        'Auth' => Ngt\Larafm\Auth\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
         'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
@@ -227,9 +226,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'Larafm' => Ngt\Larafm\Facade\Larafm::class,
-        'Form' => Collective\Html\FormFacade::class,  // 追加
-        'Html' => Collective\Html\HtmlFacade::class,
+
     ],
 
 ];

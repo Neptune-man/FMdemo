@@ -3,9 +3,9 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Larafm;
+use Auth;
 
-class Permission
+class AuthMiddle
 {
     /**
      * Handle an incoming request.
@@ -16,9 +16,8 @@ class Permission
      */
     public function handle($request, Closure $next)
     {
-        $user=Larafm::Auth()->user();
-        if($user->権限!="管理者"){
-          return redirect('./home');
+        if(!Auth::check()){
+          return redirect("/login");
         }
         return $next($request);
     }

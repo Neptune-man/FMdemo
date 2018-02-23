@@ -2,18 +2,29 @@
 
 namespace App;
 
-use Larafm;
+use Illuminate\Notifications\Notifiable;
+use Ngt\Larafm\Database\Model;
 
-class User extends Larafm
+class User extends Model
 {
-    public function __construct(){
-      Larafm::setLayout("ユーザー");
-      return $this;
-    }
+    use Notifiable;
+    public $timestamps=false;
+    protected $layoutName = 'ユーザー';
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'name', 'email', 'password',
+    ];
 
-    static public function getAll(){
-      $datas=Larafm::find(10);
-      $datas=$datas->data;
-      return $datas;
-    }
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 'remember_token',
+    ];
 }
