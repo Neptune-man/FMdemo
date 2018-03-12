@@ -24,8 +24,8 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-          "社員番号"=>"required|string|min:4|max:255",
-          "パスワード"=>"required|string|min:4|max:255",
+            "社員番号"=>"required|string|min:4|max:255",
+            "パスワード"=>"required|string|min:4|max:255",
         ];
     }
 }

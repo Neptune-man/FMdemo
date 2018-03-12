@@ -9,96 +9,25 @@ use App\User;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function login()
-    {
-        return view("Auth.login");
+    function getLogin(){
+      return view("Auth.login");
     }
 
-    public function postLogin(LoginRequest $request){
+    function postLogin(LoginRequest $request){
       $inputs=$request->input();
       $result=Auth::login($inputs);
+
       if ($result) {
         return redirect("home");
-      }else {
-        $errors=["error"=>"Wrong"];
-        return back()->withInput()->withError($errors);
+      } elseif ($result===null) {
+        return back()->withInput()->withErrors(["message"=>"アカウントかパスワードが誤っています。"]);
+      } else {
+        return back()->withInput()->withErrors(["message"=>"DBに接続できません。管理者に問い合わせて下さい。"]);
       }
     }
 
-    public function logout()
-    {
-        Auth::logout();
-        return redirect("/");
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    function logout(request $request){
+      Auth::logout();
+      return redirect("/");
     }
 }
